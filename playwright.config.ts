@@ -16,7 +16,7 @@ export default defineConfig({
     screenshot: "only-on-failure",
     video: "retain-on-failure",
     headless: false,
-    viewport: { width: 1280, height: 720 }, // Set default viewport size for consistency
+    viewport: { width: 1920, height: 1080 }, // Set default viewport size for consistency
     ignoreHTTPSErrors: true, // Ignore SSL errors if necessary
     permissions: ["geolocation"], // Set necessary permissions for geolocation-based tests },
   },
@@ -51,10 +51,3 @@ export default defineConfig({
   ],
 });
 
-/* Final Conclusion (Interview Answer)
-Workers not specified → Playwright CPU ke hisaab se workers create karta hai.
-4 workers create hue → Isliye spec files parallel me execute hui.
-fullyParallel: false → Sirf same spec file ke tests serial me chalenge.
-Different spec files phir bhi parallel me chalti hain.
-
-Isliye tumhare current execution me tests parallel hi chale hain. */

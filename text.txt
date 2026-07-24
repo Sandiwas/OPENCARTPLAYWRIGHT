@@ -1,3 +1,53 @@
-test
-this is test file 
-this is test
+/* Final Conclusion (Interview Answer)
+Workers not specified → Playwright CPU ke hisaab se workers create karta hai.
+4 workers create hue → Isliye spec files parallel me execute hui.
+fullyParallel: false → Sirf same spec file ke tests serial me chalenge.
+Different spec files phir bhi parallel me chalti hain.
+
+Isliye tumhare current execution me tests parallel hi chale hain. */
+
+
+// GitHub Actions + Headless Mode Notes
+// GitHub Actions generally runs Playwright tests in headless mode.
+// In headless mode, no browser window is opened.
+// Since there is no browser window, --start-maximized has no practical effect.
+// Therefore, launchOptions: { args: ["--start-maximized"] } is not recommended for CI.
+// To control the browser size in GitHub Actions, use the viewport property.
+// Example:
+// use: {
+//   headless: true,
+//   viewport: {
+//     width: 1280,
+//     height: 720,
+//   },
+// }
+// Local vs GitHub Actions
+// Local Machine	GitHub Actions
+// headless: false	headless: true
+// --start-maximized can be used	--start-maximized is not needed
+// Browser window opens	No browser window opens
+// Maximize works	Use viewport to set browser size
+// One-line Interview Answer
+
+// In GitHub Actions, Playwright tests run in headless mode, so --start-maximized is unnecessary. We use the viewport property to control the browser resolution instead.
+
+
+// Haan, viewport dena bilkul sahi hai. Bas viewport aur --start-maximized ka purpose alag hai.
+
+// | `viewport`                                    | `--start-maximized`                            |
+// | --------------------------------------------- | ---------------------------------------------- |
+// | Page (web content) ka size set karta hai.     | Browser window ko maximize karta hai.          |
+// | ✅ Headless aur headed dono me kaam karta hai. | ✅ Sirf headed mode me useful hai.              |
+// | CI/GitHub Actions me recommended hai.         | Headless CI me koi practical effect nahi hota. |
+
+// Example:
+
+// use: {
+//   headless: true,
+//   viewport: {
+//     width: 1920,
+//     height: 1080,
+//   },
+// }
+
+// Isme browser window open nahi hogi (headless), lekin page 1920×1080 resolution par render hoga.
