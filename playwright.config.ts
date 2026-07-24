@@ -5,7 +5,7 @@ import { defineConfig, devices } from "@playwright/test";
 export default defineConfig({
   timeout: 30 * 1000, // 30 seconds
   testDir: "./tests",
-  fullyParallel: false,
+  fullyParallel: true,
   workers: 1,
   retries: 1,
   reporter: [["list"], ["html"], ["allure-playwright"]],
@@ -28,9 +28,12 @@ export default defineConfig({
       name: "chromium",
       use: {
         browserName: "chromium",
-        viewport: null,
-        launchOptions: { args: ["--start-maximized"] },
       },
+      // use: {
+      //   browserName: "chromium",
+      //   viewport: null,
+      //   launchOptions: { args: ["--start-maximized"] },
+      // },
     },
 
     /* {
