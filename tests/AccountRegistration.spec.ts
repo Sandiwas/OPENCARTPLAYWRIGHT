@@ -22,7 +22,7 @@ test.afterEach(async ({ page }) => {
   await page.close();
 });
 
-test("Account Regestration @sanity @regression @master", async () => {
+test("Account Regestration @regression @master", async () => {
   expect(await homePage.isHomePage()).toBeTruthy();
   await homePage.clickMyAccount();
   await homePage.clickRegister();
